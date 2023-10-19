@@ -1,6 +1,6 @@
 import "./style.css";
 // TO FIX: change link to bundle for github pages
-import * as THREE from "https://unpkg.com/three@0.154.0/build/three.module.js;
+import * as THREE from "https://unpkg.com/three@0.154.0/build/three.module.js"
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
