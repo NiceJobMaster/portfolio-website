@@ -1,5 +1,9 @@
 import "./style.css";
-import * as THREE from "three"
+import * as THREE from "three";
+import space from "./space.jpg";
+import image from "./image.png";
+import moon from "./moon.jpg";
+import normal from "./normal.jpg";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -46,37 +50,37 @@ function addStar() {
 
 Array(200).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load("space.jpg");
+const spaceTexture = new THREE.TextureLoader().load(space);
 scene.background = spaceTexture;
 
-const imageTexture = new THREE.TextureLoader().load("image.png");
-const image = new THREE.Mesh(
+const imageTexture = new THREE.TextureLoader().load(image);
+const imageMesh = new THREE.Mesh(
   new THREE.BoxGeometry(3, 3, 3),
   new THREE.MeshBasicMaterial({ map: imageTexture })
 );
 
-scene.add(image);
+scene.add(imageMesh);
 
-const moonTexture = new THREE.TextureLoader().load("moon.jpg");
-const normalTexture = new THREE.TextureLoader().load("normal.jpg");
-const moon = new THREE.Mesh(
+const moonTexture = new THREE.TextureLoader().load(moon);
+const normalTexture = new THREE.TextureLoader().load(normal);
+const moonMesh = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshStandardMaterial({ map: moonTexture, normalMap: normalTexture })
 );
-moon.position.z = 30;
-moon.position.setX(-10);
+moonMesh.position.z = 30;
+moonMesh.position.setX(-10);
 
-scene.add(moon);
+scene.add(moonMesh);
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
 
-  moon.rotation.x += 0.05;
-  moon.rotation.y += 0.075;
-  moon.rotation.z += 0.05;
+  moonMesh.rotation.x += 0.05;
+  moonMesh.rotation.y += 0.075;
+  moonMesh.rotation.z += 0.05;
 
-  image.rotation.y += 0.01;
-  image.rotation.z += 0.01;
+  imageMesh.rotation.y += 0.01;
+  imageMesh.rotation.z += 0.01;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
